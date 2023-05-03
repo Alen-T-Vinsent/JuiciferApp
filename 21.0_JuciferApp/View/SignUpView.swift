@@ -72,9 +72,28 @@ struct SignUpView: View {
                     //heading
                     Text("Please Sign Up")
                         .font(.title)
+                    
+                    
+                   
                     //email textField
-                    TextField("enter your email ", text: $signUpVm.emailTxtField)
+                    TextField("create a unique username ", text: $signUpVm.userNameTxtField)
+                        .onChange(of: signUpVm.userNameTxtField) { new in
+                            signUpVm.checkUsertExists(documentId: signUpVm.userNameTxtField)
+                        }
+                        .overlay(alignment:.trailing){
+                            //for username exist status
+                            if !signUpVm.userNameExist && signUpVm.userNameTxtField != "" {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(Color.green)
+                            } else {
+                                Image(systemName: "xmark")
+                                    .foregroundColor(Color.red)
+                            }
+                                
+                        }//:confirm password overlay for eye
                         .textFieldStyle(UnderlinedTextFieldStyle())
+                    
+                        
                     //password textField
                     TextField("create a password ", text: $signUpVm.passwordTxtField)
                         .textFieldStyle(UnderlinedTextFieldStyle())
@@ -137,8 +156,31 @@ struct SignUpView: View {
                     }
                     .onTapGesture {
                         print("tapped arrow right button in signup view")
+                        let passwordIsSame = signUpVm.checkBothPasswordAreSame()
+                        if passwordIsSame == true && signUpVm.userNameExist == false{
+                            signUpVm.showAlert = true
+                            print("successfully creating username.....")
+                            print("so creating username in firebase as document in Users collection...")
+                            
+                            
+                        }else{
+                            print("err creating userName")
+                        }
                     }
+                    .alert("Would you like to create an account", isPresented: $signUpVm.showAlert) {
+                               Button("Are you sure", role: .cancel) {
+                                   signUpVm.createNewUser(withID: signUpVm.userNameTxtField, password: signUpVm.confirmPasswordTxtField)
+                                   signUpVm.userNameTxtField = ""
+                                   signUpVm.passwordTxtField = ""
+                                   signUpVm.confirmPasswordTxtField = ""
+                                   
+                                   signUpVm.displaySignUpView = false
+                               }
+                        Button("cancel", role: .destructive) { }
+                           }
+                
             }
+                    
             
             
             

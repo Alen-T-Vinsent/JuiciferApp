@@ -8,10 +8,23 @@
 import SwiftUI
 
 struct SingleJuiceView: View {
+    
+    @AppStorage("USER_NAME") var USER_NAME = ""
+    
+    
+    @State var juiceData:JuiceModel
+    @EnvironmentObject var navigationPathVm:NavigationPathVm
     @EnvironmentObject var appCredentialsVm:AppCredentialsViewModel
+    @EnvironmentObject var cartVm:CartViewModel
     
     @Environment(\.presentationMode) var presentationMode
-
+    @Binding var isHomeActive:Bool
+    @State var popUpCart = false
+    
+    //to show pop over "Added to cart"
+    @State var showPopOverItemAddedToCart:Bool = false
+    
+    @State var quantityTxt:Int = 1
     
     var body: some View {
         ZStack{
@@ -25,6 +38,7 @@ struct SingleJuiceView: View {
                 
                 //1st half
                 VStack{
+                  
                    
                     Spacer()
                     
@@ -44,11 +58,10 @@ struct SingleJuiceView: View {
                     }
                     .frame(height: 100)
                     .frame(maxWidth: .infinity)
-//                    .background(Color.black)
                     
                     //For Name of juice and Love button
                     HStack{
-                        Text("Mango Smoothie")
+                        Text("\(juiceData.name)")
                             .font(.title.bold())
                         Spacer()
                         Image(systemName: "heart.fill")
@@ -70,12 +83,11 @@ struct SingleJuiceView: View {
                             .background(Color("bg-main-lightBrown"))
                             .cornerRadius(10)
                             .foregroundColor(Color.white)
-                        
                     }
                     
                     
                     //for price
-                    Text("Price $15")
+                    Text("Price \(juiceData.currentPrice) rs")
                         .font(.title2.bold())
                         .padding(.top)
                         .padding(.bottom)
@@ -88,7 +100,10 @@ struct SingleJuiceView: View {
                             .frame(width: 50,height: 50)
                             .background(Color("bg-main-lightBrown"))
                             .cornerRadius(10)
-                        Text("1")
+                            .onTapGesture {
+                                decreaseQuantity()
+                            }
+                        Text("\(quantityTxt)")
                             .font(.title.bold())
                             .frame(width: 50,height: 50)
                             .cornerRadius(10)
@@ -98,10 +113,13 @@ struct SingleJuiceView: View {
                             .frame(width: 50,height: 50)
                             .background(Color("bg-main-lightBrown"))
                             .cornerRadius(10)
+                            .onTapGesture{
+                              addQuantity()
+                            }
                     }//:Hstack
                     .foregroundColor(Color.white)
                     
-                    Text("Cold ,creamy ,thick mango smoothie filled with thick mango juce")
+                    Text("\(juiceData.description)")
                         .font(.title3.bold())
                     
                     //spacer to split up and buttons at botttom
@@ -116,6 +134,20 @@ struct SingleJuiceView: View {
                         .padding()
                         .background(Color("bg-main-lightBrown"))
                         .cornerRadius(10)
+                        .onTapGesture {
+                            print("juice adding to cart...")
+                            let newCartModel = CartItemModel(juiceId: juiceData.id, juiceQuantity: quantityTxt, juiceName: juiceData.name, juicePrice: juiceData.currentPrice)
+                            cartVm.updateProductInCart(itemModel: newCartModel)
+                            
+                            
+                            //to show popover "Item added to cart"
+                            showPopOverItemAddedToCart.toggle()
+
+                        }
+                       
+                        .alert("successfully added to cart", isPresented: $showPopOverItemAddedToCart) {
+                                    Button("Got it", role: .cancel) { }
+                                }
                         
                         HStack{
                             Text("Buy Now")
@@ -154,6 +186,10 @@ struct SingleJuiceView: View {
                 
 
         }
+        .fullScreenCover(isPresented: $isHomeActive, content: {
+                CartView(isHomeActive: $isHomeActive)
+        })
+        .navigationBarBackButtonHidden(true)
         .overlay(alignment:.top){
             // header
             HStack{
@@ -169,43 +205,50 @@ struct SingleJuiceView: View {
                 .cornerRadius(10)
                 .onTapGesture {
                     print("back button of SingleJuiceView")
-//                    print("before appCredentialVm.showSingleJuiceView ==> \( appCredentialsVm.showSingleJuiceView)")
-//                    print(appCredentialsVm.showSingleJuiceView)
-//                    appCredentialsVm.showSingleJuiceView = false
-//
-//                    print("after appCredentialVm.showSingleJuiceView ==> \( appCredentialsVm.showSingleJuiceView)")
-                    
-                    print("show SingleJuiceView")
-                    print("\(appCredentialsVm.showSingleJuiceView)")
-//                    appCredentialsVm.showSingleJuiceView = false
-                    print("\(appCredentialsVm.showSingleJuiceView)")
+                    presentationMode.wrappedValue.dismiss()
+
                 }
              
                 
                 Spacer()
                 
-                //cart icon
-                VStack{
-                    Image(systemName: "cart")
-                        .resizable()
-                        .padding()
+
+               
+                    //cart icon
+                    VStack{
+                        Image(systemName: "cart")
+                            .resizable()
+                            .padding()
+                        
+                            .cornerRadius(10)
+                    }
+                    .frame(width: 50,height: 50)
+                    .background(Color("bg-component-highlighter"))
+                    .cornerRadius(10)
+                    .onTapGesture {
+                        popUpCart = true
+                    }
                     
-                        .cornerRadius(10)
-                }
-                .frame(width: 50,height: 50)
-                .background(Color("bg-component-highlighter"))
-                .cornerRadius(10)
-                .onTapGesture {
-                    print("ShowCartView")
-//                    print("before appCredentialVm.showCartView ==> \( appCredentialsVm.showCartView)")
-//                    appCredentialsVm.showCartView = true
+
+                
+                
+
+
+                
+                
+                
+                
+//                .onTapGesture {
+//                    print("ShowCartView")
+////                    print("before appCredentialVm.showCartView ==> \( appCredentialsVm.showCartView)")
+////                    appCredentialsVm.showCartView = true
+////
+////                    print("before appCredentialVm.showCartView ==> \( appCredentialsVm.showCartView)")
 //
-//                    print("before appCredentialVm.showCartView ==> \( appCredentialsVm.showCartView)")
-                    
-                    print("\(appCredentialsVm.showCartView)")
-                    appCredentialsVm.showCartView = true
-                    print("\(appCredentialsVm.showCartView)")
-                }
+//                    print("\(appCredentialsVm.showCartView)")
+//                    appCredentialsVm.showCartView = true
+//                    print("\(appCredentialsVm.showCartView)")
+//                }
                 
             }//:header
             .foregroundColor(Color.white)
@@ -213,14 +256,49 @@ struct SingleJuiceView: View {
             .padding(.top)
             
         }
-        .fullScreenCover(isPresented: $appCredentialsVm.showCartView) {
-            CartView()
+//        .fullScreenCover(isPresented: $appCredentialsVm.showCartView) {
+//            CartView()
+//        }
+    }
+    
+    
+    //MARK: Functions
+    
+//    func addToCart(cartModel:CartModel){
+//
+//        var indexToReplace = -1
+//
+//        for index in 0..<cartVm.cartArray.count {
+//            if cartVm.cartArray[index].juiceId  == juiceData.id {
+//                // Update the quantity of the item
+//                cartVm.cartArray[index] = cartModel
+//                indexToReplace = index
+//                break
+//            }
+//        }
+//
+//        if indexToReplace != -1{
+//            cartVm.cartArray[indexToReplace] = cartModel
+//        }else{
+//            cartVm.cartArray.append(cartModel)
+//        }
+//
+//
+//    }
+    
+    func addQuantity(){
+        quantityTxt+=1
+    }
+    
+    func decreaseQuantity(){
+        if quantityTxt > 1{
+            quantityTxt-=1
         }
     }
 }
 
-struct SingleJuiceView_Previews: PreviewProvider {
-    static var previews: some View {
-        SingleJuiceView()
-    }
-}
+//struct SingleJuiceView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SingleJuiceView()
+//    }
+//}

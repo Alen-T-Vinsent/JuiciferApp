@@ -9,6 +9,10 @@ import SwiftUI
 
 struct PaymentView: View {
     @EnvironmentObject var appCredentialsVm:AppCredentialsViewModel
+    @AppStorage("USER_NAME") var USER_NAME = ""
+    
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var isHomeActive:Bool
         var body: some View {
             ZStack{
                 //for Linear background
@@ -63,9 +67,7 @@ struct PaymentView: View {
                             
                             print("\nback button of  PaymentView")
                             
-                            print(appCredentialsVm.showPaymentView)
-                            appCredentialsVm.showPaymentView = false
-                            print(appCredentialsVm.showPaymentView)
+                            presentationMode.wrappedValue.dismiss()
                             
 //
                         }
@@ -83,41 +85,28 @@ struct PaymentView: View {
                 .padding()
                 .shadow(radius: 19)
             }
+            .navigationBarBackButtonHidden(true)
             .overlay(alignment:.bottom){
-                HStack{
-                    Text("pay $17")
-                        .font(.subheadline.bold())
-                        .padding()
+                NavigationLink {
+                    OrderPlacedView( isHomeActive: $isHomeActive)
+                } label: {
+                    HStack{
+                        Text("pay $17")
+                            .font(.subheadline.bold())
+                            .padding()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(Color("bg-main-lightBrown"))
+                    .cornerRadius(20)
+                    .foregroundColor(Color.white)
+                    .padding(30)
+                    .shadow(color: .black,radius: 3)
                 }
-                .frame(maxWidth: .infinity)
-                .background(Color("bg-main-lightBrown"))
-                .cornerRadius(20)
-                .foregroundColor(Color.white)
-                .padding(30)
-                .shadow(color: .black,radius: 3)
-                .onTapGesture {
-//                    print("before appCredentialVm.showOrderPlacedView ==> \(appCredentialsVm.showOrderPlacedView)")
-//                    appCredentialsVm.showOrderPlacedView = true
-//                    print("after appCredentialVm.showOrderPlacedView ==> \(appCredentialsVm.showOrderPlacedView)")
-                    
-                  
-                    print("\n pay17 ")
-                    print(appCredentialsVm.showOrderPlacedView)
-                    appCredentialsVm.showOrderPlacedView = true
-                    print(appCredentialsVm.showOrderPlacedView)
-                    
-                }
-            }
-            .fullScreenCover(isPresented: $appCredentialsVm.showOrderPlacedView) {
-                OrderPlacedView()
+
+
             }
         }
     }
 
 
 
-struct PaymentView_Previews: PreviewProvider {
-    static var previews: some View {
-        PaymentView()
-    }
-}

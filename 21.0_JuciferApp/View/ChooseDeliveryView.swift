@@ -114,7 +114,6 @@ struct ChooseDeliveryView: View {
                         .ignoresSafeArea(.all)
                 
                     }
-    //             .background(Color.green)
                  .frame(height: appCredentialsVm.screenHeight)
                  
 
@@ -122,10 +121,6 @@ struct ChooseDeliveryView: View {
                     
                 }
                 .frame(width: appCredentialsVm.screenWidth,height: appCredentialsVm.screenHeight)
-    //            .background(Color.red)
-                
-                    
-                    
 
             }//:Zstack
             .overlay(alignment:.top){
@@ -144,12 +139,6 @@ struct ChooseDeliveryView: View {
                         .background(Color("bg-component-highlighter"))
                         .cornerRadius(10)
                         .onTapGesture {
-//                            print("chooseDeliveryView back button")
-//
-//                            print("before appCredentialVm.showSelectDeliveryAddressView ==> \( appCredentialsVm.showSelectDeliveryAddressView)")
-//                            appCredentialsVm.showSelectDeliveryAddressView = false
-//
-//                            print("after appCredentialVm.showSelectDeliveryAddressView ==> \( appCredentialsVm.showSelectDeliveryAddressView)")
                             
                             print("back button of ChooseDeliveryView")
                             print(appCredentialsVm.showChooseDeliveryView)
@@ -183,27 +172,14 @@ struct ChooseDeliveryView: View {
                 .padding(30)
                 .shadow(color: .black,radius: 3)
                 .onTapGesture {
-//                    print("chooseDeliveryView continue button ")
-//                    print("before appCredentialVm.showSelectPaymentMethod ==> \( appCredentialsVm.showSelectPaymentMethod)")
-//                    appCredentialsVm.showSelectPaymentMethod = true
-//
-//                    print("after appCredentialVm.showSelectPaymentMethod ==> \( appCredentialsVm.showSelectPaymentMethod)")
-                    
                     print("continue button")
                     print(appCredentialsVm.showSelectPaymentMethod)
                     appCredentialsVm.showSelectPaymentMethod = true
                     print(appCredentialsVm.showSelectPaymentMethod)
                 }
             }
-            .fullScreenCover(isPresented: $appCredentialsVm.showSelectPaymentMethod) {
-                SelectPaymentMethodView()
-            }
+           
         }
     }
 
 
-struct ChooseDeliveryView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChooseDeliveryView()
-    }
-}

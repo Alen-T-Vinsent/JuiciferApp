@@ -10,6 +10,10 @@ import SwiftUI
 struct OrderPlacedView: View {
     @EnvironmentObject var appCredentialsVm:AppCredentialsViewModel
     
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var isHomeActive:Bool
+    
+    
     @State var showLoading = false
             var body: some View {
                 ZStack{
@@ -55,36 +59,32 @@ struct OrderPlacedView: View {
                     
                 }//:Zstack
                 
-                
+                .navigationBarBackButtonHidden(true)
                 .overlay(alignment:.bottom){
-                    HStack{
-                        Text("continue shopping")
-                            .font(.subheadline.bold())
-                            .padding()
+                   
+                        HStack{
+                            Text("continue shopping")
+                                .font(.subheadline.bold())
+                                .padding()
+                        }
+                        .frame(maxWidth: .infinity)
+                        .background(Color("bg-main-lightBrown"))
+                        .cornerRadius(20)
+                        .foregroundColor(Color.white)
+                        .padding(30)
+                        .shadow(color: .black,radius: 3)
+                        .onTapGesture {
+                            isHomeActive = false
+                        }
                     }
-                    .frame(maxWidth: .infinity)
-                    .background(Color("bg-main-lightBrown"))
-                    .cornerRadius(20)
-                    .foregroundColor(Color.white)
-                    .padding(30)
-                    .shadow(color: .black,radius: 3)
-                    .onTapGesture {
-                        print("continue shopping")
-                        appCredentialsVm.showSingleJuiceView = false
-                        
-                    }
-                }
-                .fullScreenCover(isPresented: $appCredentialsVm.showHomeView) {
-                    HomeView()
-                }
+
+                   
+            
+              
                 
             }
         }
 
 
 
-struct OrderPlacedView_Previews: PreviewProvider {
-    static var previews: some View {
-        OrderPlacedView()
-    }
-}
+

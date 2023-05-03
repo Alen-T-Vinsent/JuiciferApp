@@ -10,7 +10,13 @@ struct SignInView: View {
     @EnvironmentObject var appCredentialsVm:AppCredentialsViewModel
     @StateObject var signInVm = SignInViewModel()
     @StateObject var signUpVm = SignUpViewModel()
+    @EnvironmentObject var cartVm:CartViewModel
+    @EnvironmentObject var buyVm:BuyViewModel
     
+    @EnvironmentObject var addressVm:AddressViewModel
+    
+    @AppStorage("LOGGIN_STATUS") var LOGGIN_STATUS = false
+    @AppStorage("USER_NAME") var USER_NAME = ""
     
     
     var body: some View {
@@ -68,12 +74,12 @@ struct SignInView: View {
                 
                 //2nd half
                 VStack(alignment:.leading){
-                    
+
                     //heading
                     Text("Please Sign In")
                         .font(.title)
                     //email textField
-                    TextField("Enter your email ", text: $signInVm.emailTxtField)
+                    TextField("Enter your userName ", text: $signInVm.userNameTxtField)
                         .textFieldStyle(UnderlinedTextFieldStyle())
                     //password textField
                     TextField("Enter your password ", text: $signInVm.passwordTxtField)
@@ -97,6 +103,11 @@ struct SignInView: View {
                     
                     Spacer()
                     
+                    
+                    Text("Google sign In")
+                        .onTapGesture {
+                            appCredentialsVm.signIn()
+                        }
                     
                     //for tappable signup text
                     Text("Sign Up")
@@ -135,7 +146,22 @@ struct SignInView: View {
                     }
                     .onTapGesture {
                         print("tapped arrow right button in signin view")
-                        appCredentialsVm.loggInStatus = true
+                        if signInVm.userNameTxtField != "" && signInVm.passwordTxtField != ""{
+                            signInVm.checkUsernameWithPasswordExist(username: signInVm.userNameTxtField, password: signInVm.passwordTxtField)
+                            
+                           
+                            USER_NAME = signInVm.userNameTxtField
+                            
+                            cartVm.userName = signInVm.userNameTxtField
+                            buyVm.userName = signInVm.userNameTxtField
+                            addressVm.userName = signInVm.userNameTxtField
+                            
+                            print("cartVm.userName")
+                            print(cartVm.userName)
+                            
+                            //making login appstorage as true
+                            LOGGIN_STATUS = true
+                        }
                         
                     }
             }

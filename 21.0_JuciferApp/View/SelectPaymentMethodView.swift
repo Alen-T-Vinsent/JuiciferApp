@@ -8,22 +8,23 @@
 import SwiftUI
 
 struct SelectPaymentMethodView: View {
+    @EnvironmentObject var navigationPathVm:NavigationPathVm
     @EnvironmentObject var appCredentialsVm:AppCredentialsViewModel
+    
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var isHomeActive:Bool
+    
     var body: some View {
         ZStack{
             //for Linear background
             LinearGradient(gradient: appCredentialsVm.gradient, startPoint: .bottom, endPoint: .topLeading)
                 .ignoresSafeArea(.all)
-            
-            
+        
             //main vstack
             VStack{
-                
-                
-                
+
                 //2nd half
                 VStack{
-                    
                     ScrollView(.vertical){
                         HStack{
                             
@@ -65,12 +66,13 @@ struct SelectPaymentMethodView: View {
                 
             }
             .frame(width: appCredentialsVm.screenWidth,height: appCredentialsVm.screenHeight)
-            //            .background(Color.red)
+            //.background(Color.red)
             
             
             
             
         }//:Zstack
+        .navigationBarBackButtonHidden(true)
         .overlay(alignment:.top){
             VStack{
                 // header
@@ -87,16 +89,7 @@ struct SelectPaymentMethodView: View {
                     .background(Color("bg-component-highlighter"))
                     .cornerRadius(10)
                     .onTapGesture {
-//                        print("back button of SelectPaymentMethodView")
-//                        print("before appCredentialVm.showConfirmPaymentMethod ==> \( appCredentialsVm.showConfirmPaymentMethod)")
-//                        appCredentialsVm.showConfirmPaymentMethod = false
-//                        print("after appCredentialVm.showConfirmPaymentMethod ==> \( appCredentialsVm.showConfirmPaymentMethod)")
-                        
-                        print("back button of SelectPaymentMethodView")
-                        
-                        print(appCredentialsVm.showSelectPaymentMethod)
-                        appCredentialsVm.showSelectPaymentMethod = false
-                        print(appCredentialsVm.showSelectPaymentMethod)
+                        presentationMode.wrappedValue.dismiss()
                     }
                     Spacer()
                     
@@ -115,43 +108,28 @@ struct SelectPaymentMethodView: View {
         
         
         .overlay(alignment:.bottom){
-            HStack{
-                Text("confirm payment method")
-                    .font(.subheadline.bold())
-                    .padding()
-            }
-            .frame(maxWidth: .infinity)
-            .background(Color("bg-main-lightBrown"))
-            .cornerRadius(20)
-            .foregroundColor(Color.white)
-            .padding(30)
-            .shadow(color: .black,radius: 3)
-            .onTapGesture {
-//                print("SelectPaymentMethodView confirm payment method tapped")
-//                print("before appCredentialVm.showPaymentView ==> \( appCredentialsVm.showPaymentView)")
-//
-//                appCredentialsVm.showPaymentView = true
-//
-//                print("after appCredentialVm.showPaymentView ==> \( appCredentialsVm.showPaymentView)")
-                
-                print("confirm payment method")
-                
-                print(appCredentialsVm.showPaymentView)
-                appCredentialsVm.showPaymentView = true
-                print(appCredentialsVm.showPaymentView)
-                
-            }
+           
+                NavigationLink {
+                    PaymentView(isHomeActive: $isHomeActive)
+                } label: {
+                    HStack{
+                        Text("confirm payment method")
+                            .font(.subheadline.bold())
+                            .padding()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(Color("bg-main-lightBrown"))
+                    .cornerRadius(20)
+                    .foregroundColor(Color.white)
+                    .padding(30)
+                    .shadow(color: .black,radius: 3)
+                }
+
+            
         }
         
-        .fullScreenCover(isPresented: $appCredentialsVm.showPaymentView) {
-            PaymentView()
-        }
+
         
     }
 }
 
-struct SelectPaymentMethodView_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectPaymentMethodView()
-    }
-}
