@@ -213,7 +213,7 @@ struct BuyView: View {
                     NavigationLink{
                         //hiding it because i need to make payment gate way now straight redirecting to OrderPlaced view
                        // SelectDeliveryAddressView(isHomeActive:$isHomeActive)
-                        SelectDeliveryAddressView(isHomeActive: $isHomeActive)
+                        SelectDeliveryAddressView(totalPrie: totalTxt, isHomeActive: $isHomeActive)
                             .onAppear{
                                 let fetchedProducts = cartVm.juicesArray.map{ $0.juiceName}
                                 print(fetchedProducts)

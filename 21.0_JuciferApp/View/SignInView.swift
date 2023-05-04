@@ -8,10 +8,11 @@ import SwiftUI
 
 struct SignInView: View {
     @EnvironmentObject var appCredentialsVm:AppCredentialsViewModel
-    @StateObject var signInVm = SignInViewModel()
-    @StateObject var signUpVm = SignUpViewModel()
+    @EnvironmentObject var signInVm:SignInViewModel
+    @EnvironmentObject var signUpVm:SignUpViewModel
     @EnvironmentObject var cartVm:CartViewModel
     @EnvironmentObject var buyVm:BuyViewModel
+
     
     @EnvironmentObject var addressVm:AddressViewModel
     
@@ -148,14 +149,32 @@ struct SignInView: View {
                         print("tapped arrow right button in signin view")
                         if signInVm.userNameTxtField != "" && signInVm.passwordTxtField != ""{
                             signInVm.checkUsernameWithPasswordExist(username: signInVm.userNameTxtField, password: signInVm.passwordTxtField)
+
                             
-                           
                             USER_NAME = signInVm.userNameTxtField
-                            
+                            print("iuseeeerrrrrrrrrrrr naaaameeee \(USER_NAME)")
                             cartVm.userName = signInVm.userNameTxtField
                             buyVm.userName = signInVm.userNameTxtField
                             addressVm.userName = signInVm.userNameTxtField
                             
+                            
+//                            if cvm.savedEntities.isEmpty == true{
+//                                cvm.addUser(text: signInVm.userNameTxtField)
+//                            }
+//                            cartVm.userName = signInVm.userNameTxtField
+//                            buyVm.userName = signInVm.userNameTxtField
+//                            addressVm.userName = signInVm.userNameTxtField
+//
+//
+//                            if  cvm.savedEntities.isEmpty == false{
+//                                cartVm.userName = cvm.savedEntities[0].uniqueName ?? "UNKNOWN"
+//                                buyVm.userName = cvm.savedEntities[0].uniqueName ?? "UNKNOWN"
+//                                addressVm.userName = cvm.savedEntities[0].uniqueName ?? "UNKNOWN"
+//                            }else{
+//                                    cvm.addUser(text: signInVm.userNameTxtField)
+//
+//                            }
+//
                             print("cartVm.userName")
                             print(cartVm.userName)
                             

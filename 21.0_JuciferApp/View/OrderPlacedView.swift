@@ -12,8 +12,6 @@ struct OrderPlacedView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Binding var isHomeActive:Bool
-    
-    
     @State var showLoading = false
             var body: some View {
                 ZStack{
@@ -21,12 +19,9 @@ struct OrderPlacedView: View {
                     LinearGradient(gradient: appCredentialsVm.gradient, startPoint: .bottom, endPoint: .topLeading)
                         .ignoresSafeArea(.all)
                     
-                    
                     //main vstack
                     VStack{
-                        
-                        
-                        
+
                         //2nd half
                         VStack{
                             Image(systemName: "checkmark.circle.fill")

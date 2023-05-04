@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SelectDeliveryAddressView: View {
+    @State var totalPrie:Int
     @AppStorage("USER_NAME") var USER_NAME = ""
     @EnvironmentObject var appCredentialsVm:AppCredentialsViewModel
     @EnvironmentObject var navigationPathVm:NavigationPathVm
@@ -15,6 +16,9 @@ struct SelectDeliveryAddressView: View {
     @EnvironmentObject var orderDetailsVm:OrderDetailsViewModel
     
     @EnvironmentObject var addressViewModel:AddressViewModel
+    @EnvironmentObject var cartVm:CartViewModel
+    
+    @State var showRazorPayView =  false
     
     @State var showAddAddressView = false
     @State var enableEditAddress = false
@@ -216,34 +220,37 @@ struct SelectDeliveryAddressView: View {
         }
         
         .overlay(alignment:.bottom){
-            
-            
-            NavigationLink{
-                OrderPlacedView(isHomeActive: $isHomeActive)
-//                    .onAppear{
-//
-//                        let orderDetailsModel = OrderDetailsModel(id: UUID().uuidString, status: OrderStatusEnum.ordered, customerName: USER_NAME, products: ["Carrot juice","Apple juice"], price: 10000)
-//                        orderDetailsVm.addOrderToOrders(item: orderDetailsModel)
-//                    }
-            } label: {
-                HStack{
-                    Text("Deliver to this address")
-                        .font(.subheadline.bold())
-                        .padding()
-                }
-                .frame(maxWidth: .infinity)
-                .background(Color("bg-main-lightBrown"))
-                .cornerRadius(20)
-                .foregroundColor(Color.white)
-                .padding(30)
-                .shadow(color:.black,radius: 3)
-            }
-            
+//            NavigationLink {
+//                RazorPayView(totalPrie:totalPrie)
+//                    .environmentObject(cartVm)
+//            } label: {
+                
+                     HStack{
+                         Text("Deliver to this address")
+                             .font(.subheadline.bold())
+                             .padding()
+                     }
+                     .frame(maxWidth: .infinity)
+                     .background(Color("bg-main-lightBrown"))
+                     .cornerRadius(20)
+                     .foregroundColor(Color.white)
+                     .padding(30)
+                     .shadow(color:.black,radius: 3)
+                     .onTapGesture {
+                         showRazorPayView.toggle()
+                     }
+                     
+//            }
+           
+           
+        
             
             
             
         }
-        
+        .sheet(isPresented: $showRazorPayView, content: {
+            RazorPayView(totalPrie:totalPrie)
+        })
         .sheet(isPresented: $showAddAddressView) {
             AddNewAddressView(addressViewModel: addressViewModel,enableEditAddress: $enableEditAddress,tappedAddress:$tappedAddress,showAddAddressView:$showAddAddressView)
                 .presentationDetents([.height(500)])

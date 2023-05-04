@@ -17,9 +17,7 @@ struct CartTesting: View {
             Button("add product1 to cart") {
                 addProductToCart(productName: "product-1", price: 1000)
             }
-            
-            
-            
+ 
             Button("update product1 to cart") {
                 updateProductInCart(productName: "product-1", newPrice: 1111)
             }

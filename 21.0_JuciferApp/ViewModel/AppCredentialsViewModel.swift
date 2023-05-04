@@ -18,6 +18,7 @@ class AppCredentialsViewModel:ObservableObject{
     let screenWidth = UIScreen.main.bounds.width
     
     
+    
     @Published var showHomeView = false
     
     @Published var showSingleJuiceView = false

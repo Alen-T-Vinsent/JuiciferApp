@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         //sign in and sign up views
         //if appCredentialsVm.loggInStatus || LOGGIN_STATUS == true{
-            if LOGGIN_STATUS == true{
+        if LOGGIN_STATUS == true{
             Home()
         }else{
           SignInView()

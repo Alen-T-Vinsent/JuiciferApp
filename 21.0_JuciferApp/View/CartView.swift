@@ -142,6 +142,11 @@ struct CartView: View {
             .frame(width: appCredentialsVm.screenWidth,height: appCredentialsVm.screenHeight)
 //            .background(Color.red)
         }//:Zstack
+        .onAppear{
+            print("printing user name")
+            print(cartVm.userName)
+            print(cartVm.fetchProducts())
+        }
         .navigationBarBackButtonHidden(true)
 //        .onAppear{
 //            cartVm.fetchProducts()
@@ -210,8 +215,9 @@ struct CartView: View {
                     NavigationLink{
                         //hiding it because i need to make payment gate way now straight redirecting to OrderPlaced view
                        // SelectDeliveryAddressView(isHomeActive:$isHomeActive)
-                        SelectDeliveryAddressView(isHomeActive: $isHomeActive)
+                        SelectDeliveryAddressView(totalPrie: totalTxt,isHomeActive:$isHomeActive)
                             .onAppear{
+                                cartVm.totalPrice = totalTxt
                                 let fetchedProducts = cartVm.juicesArray.map{ $0.juiceName}
                                 print(fetchedProducts)
                                 let orderDetailsModel = OrderDetailsModel(id: UUID().uuidString, status: OrderStatusEnum.ordered, customerName: USER_NAME, products: fetchedProducts, price: totalTxt)
@@ -233,16 +239,11 @@ struct CartView: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-//                .frame(width:appCredentialsVm.screenWidth - 20,height:200)
                 .frame(height:200)
                 .background()
                 .cornerRadius(40)
                 .shadow(radius: 10)
-                
-//                VStack{
-//
-//                }
-//                .frame(width:appCredentialsVm.screenWidth - 20,height:20)
+
             }
             
              

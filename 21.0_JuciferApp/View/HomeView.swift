@@ -18,6 +18,13 @@ struct HomeView: View {
     @EnvironmentObject var appCredentialsVm:AppCredentialsViewModel
     @EnvironmentObject var juiceVm:JuiceViewModel
     @EnvironmentObject var navigationPathVm:NavigationPathVm
+    @EnvironmentObject var cvm:CoreDataViewModel
+    
+    @EnvironmentObject var cartVm:CartViewModel
+    
+    @EnvironmentObject var buyVm:BuyViewModel
+    
+    @EnvironmentObject var addressVm:AddressViewModel
     
     
     @State var selectedOption = ""
@@ -199,7 +206,9 @@ struct HomeView: View {
 //                SingleJuiceView()
             }
             .onAppear {
-                
+                cartVm.userName = cvm.savedEntities[0].uniqueName ?? "UNKNOWN"
+                buyVm.userName = cvm.savedEntities[0].uniqueName ?? "UNKNOWN"
+                addressVm.userName = cvm.savedEntities[0].uniqueName ?? "UNKNOWN"
             }
         }//:NavigationStack
         

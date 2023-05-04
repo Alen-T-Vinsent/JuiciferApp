@@ -11,7 +11,6 @@ struct SingleJuice: View {
     
     @AppStorage("USER_NAME") var USER_NAME = ""
     
-    
     @State var juiceData:JuiceModel
     @EnvironmentObject var navigationPathVm:NavigationPathVm
     @EnvironmentObject var appCredentialsVm:AppCredentialsViewModel
@@ -33,8 +32,7 @@ struct SingleJuice: View {
             //for Linear background
             LinearGradient(gradient: appCredentialsVm.gradient, startPoint: .bottom, endPoint: .topLeading)
                 .ignoresSafeArea(.all)
-            
-            
+
             //main vstack
             VStack{
                 

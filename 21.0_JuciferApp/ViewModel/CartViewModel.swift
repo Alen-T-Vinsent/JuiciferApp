@@ -20,14 +20,14 @@ class CartViewModel: ObservableObject {
     
     @Published var userName:String = "user13"
 
-    
+    @Published var totalPrice = 0
    
     init(){
         fetchProducts()
     }
     
     func fetchProducts(){
-        cartRef.document(self.userName).addSnapshotListener { (documentSnapshot, error) in
+        cartRef.document(userName).addSnapshotListener { (documentSnapshot, error) in
             guard let document = documentSnapshot else {
                 print("Error fetching document: \(error!)")
                 return

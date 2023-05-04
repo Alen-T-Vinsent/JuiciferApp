@@ -7,7 +7,15 @@
 import SwiftUI
 
 struct Home: View {
+    @EnvironmentObject var appCredentialsVm:AppCredentialsViewModel
+    @EnvironmentObject var juiceVm:JuiceViewModel
+    @EnvironmentObject var navigationPathVm:NavigationPathVm
+    @EnvironmentObject var cvm:CoreDataViewModel
+    @EnvironmentObject var cartVm:CartViewModel
+    @EnvironmentObject var buyVm:BuyViewModel
+    @EnvironmentObject var addressVm:AddressViewModel
     
+
     ///for search
     var searchResults: [JuiceModel] {
         if searchText.isEmpty {
@@ -97,8 +105,7 @@ struct Home: View {
     
     
     var nameAaray = ["alen" , "aron" , "hello" , "unix"]
-    @EnvironmentObject var appCredentialsVm:AppCredentialsViewModel
-    @EnvironmentObject var juiceVm:JuiceViewModel
+
     
     
     @State var selectedOption = ""
@@ -306,6 +313,9 @@ struct Home: View {
             }
             .onAppear {
                 
+                cartVm.userName = USER_NAME
+                buyVm.userName = USER_NAME
+                addressVm.userName = USER_NAME
             }
         }//:NavigationStack
         

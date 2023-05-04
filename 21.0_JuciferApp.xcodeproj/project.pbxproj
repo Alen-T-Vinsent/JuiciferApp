@@ -17,6 +17,10 @@
 		1830F4F229F908CE0013C7DB /* BuyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830F4F129F908CE0013C7DB /* BuyView.swift */; };
 		1830F4F429F909C40013C7DB /* BuyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830F4F329F909C40013C7DB /* BuyViewModel.swift */; };
 		1830F56C2A0240650013C7DB /* RazorpayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830F56B2A0240650013C7DB /* RazorpayView.swift */; };
+		1830F5812A026CB00013C7DB /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 1830F5802A026CB00013C7DB /* Stripe */; };
+		1830F5832A026EB30013C7DB /* StripeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830F5822A026EB30013C7DB /* StripeView.swift */; };
+		1830F5852A027FB50013C7DB /* CheckOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830F5842A027FB50013C7DB /* CheckOutView.swift */; };
+		1830F5AB2A0343950013C7DB /* Razorpay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1830F5AA2A0343950013C7DB /* Razorpay.xcframework */; };
 		18401E1B29DE8411007A6DED /* _1_0_JuciferAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18401E1A29DE8411007A6DED /* _1_0_JuciferAppApp.swift */; };
 		18401E1D29DE8411007A6DED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18401E1C29DE8411007A6DED /* ContentView.swift */; };
 		18401E1F29DE8412007A6DED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18401E1E29DE8412007A6DED /* Assets.xcassets */; };
@@ -52,6 +56,8 @@
 		18401F0129EB0517007A6DED /* NavigatorRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18401F0029EB0517007A6DED /* NavigatorRoot.swift */; };
 		18401F0329EB1D0C007A6DED /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18401F0229EB1D0C007A6DED /* CartViewModel.swift */; };
 		18401F0529EB1E4B007A6DED /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18401F0429EB1E4B007A6DED /* CartModel.swift */; };
+		18539BA92A03C96100708806 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18539BA82A03C96100708806 /* CommonViewModel.swift */; };
+		18539BAC2A03C9D800708806 /* UserCredentials.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18539BAA2A03C9D800708806 /* UserCredentials.xcdatamodeld */; };
 		18AC037929ED067600F4144C /* CartTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC037829ED067600F4144C /* CartTesting.swift */; };
 		18AC037B29ED2A6300F4144C /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC037A29ED2A6300F4144C /* AddressModel.swift */; };
 		18AC037D29ED301F00F4144C /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC037C29ED301F00F4144C /* AddressViewModel.swift */; };
@@ -67,6 +73,9 @@
 		1830F4F129F908CE0013C7DB /* BuyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyView.swift; sourceTree = "<group>"; };
 		1830F4F329F909C40013C7DB /* BuyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewModel.swift; sourceTree = "<group>"; };
 		1830F56B2A0240650013C7DB /* RazorpayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorpayView.swift; sourceTree = "<group>"; };
+		1830F5822A026EB30013C7DB /* StripeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeView.swift; sourceTree = "<group>"; };
+		1830F5842A027FB50013C7DB /* CheckOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutView.swift; sourceTree = "<group>"; };
+		1830F5AA2A0343950013C7DB /* Razorpay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Razorpay.xcframework; sourceTree = SOURCE_ROOT; };
 		18401E1729DE8411007A6DED /* 21.0_JuciferApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 21.0_JuciferApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18401E1A29DE8411007A6DED /* _1_0_JuciferAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _1_0_JuciferAppApp.swift; sourceTree = "<group>"; };
 		18401E1C29DE8411007A6DED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,6 +110,8 @@
 		18401F0029EB0517007A6DED /* NavigatorRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorRoot.swift; sourceTree = "<group>"; };
 		18401F0229EB1D0C007A6DED /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		18401F0429EB1E4B007A6DED /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
+		18539BA82A03C96100708806 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
+		18539BAB2A03C9D800708806 /* UserCredentials.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserCredentials.xcdatamodel; sourceTree = "<group>"; };
 		18AC037829ED067600F4144C /* CartTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTesting.swift; sourceTree = "<group>"; };
 		18AC037A29ED2A6300F4144C /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 		18AC037C29ED301F00F4144C /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
@@ -116,7 +127,9 @@
 				18401EA529E549C5007A6DED /* FirebaseFirestore in Frameworks */,
 				1830F47229F59E1A0013C7DB /* GoogleSignIn in Frameworks */,
 				18401E9F29E549C5007A6DED /* FirebaseAuth in Frameworks */,
+				1830F5AB2A0343950013C7DB /* Razorpay.xcframework in Frameworks */,
 				18401EA929E549C5007A6DED /* FirebaseStorage in Frameworks */,
+				1830F5812A026CB00013C7DB /* Stripe in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +207,9 @@
 				18401E4F29E25383007A6DED /* OrderPlacedView.swift */,
 				18401E9629E53606007A6DED /* LoadingView.swift */,
 				1830F56B2A0240650013C7DB /* RazorpayView.swift */,
+				1830F5822A026EB30013C7DB /* StripeView.swift */,
+				1830F5842A027FB50013C7DB /* CheckOutView.swift */,
+				1830F5AA2A0343950013C7DB /* Razorpay.xcframework */,
 				18401EAC29E56DD5007A6DED /* NavigationStackProjectLearning */,
 			);
 			path = View;
@@ -219,6 +235,8 @@
 				1830F4F329F909C40013C7DB /* BuyViewModel.swift */,
 				18AC037C29ED301F00F4144C /* AddressViewModel.swift */,
 				1830F4E629F7C4A90013C7DB /* OrderDetailsViewModel.swift */,
+				18539BA82A03C96100708806 /* CommonViewModel.swift */,
+				18539BAA2A03C9D800708806 /* UserCredentials.xcdatamodeld */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -301,6 +319,7 @@
 				18401EA829E549C5007A6DED /* FirebaseStorage */,
 				1830F47129F59E1A0013C7DB /* GoogleSignIn */,
 				1830F47329F59E1A0013C7DB /* GoogleSignInSwift */,
+				1830F5802A026CB00013C7DB /* Stripe */,
 			);
 			productName = 21.0_JuciferApp;
 			productReference = 18401E1729DE8411007A6DED /* 21.0_JuciferApp.app */;
@@ -333,6 +352,7 @@
 			packageReferences = (
 				18401E9D29E549C5007A6DED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				1830F47029F59E1A0013C7DB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				1830F57F2A026CB00013C7DB /* XCRemoteSwiftPackageReference "stripe-ios" */,
 			);
 			productRefGroup = 18401E1829DE8411007A6DED /* Products */;
 			projectDirPath = "";
@@ -372,6 +392,7 @@
 				18401E3C29DECBD9007A6DED /* HomeView.swift in Sources */,
 				18401F0129EB0517007A6DED /* NavigatorRoot.swift in Sources */,
 				18AC037B29ED2A6300F4144C /* AddressModel.swift in Sources */,
+				1830F5852A027FB50013C7DB /* CheckOutView.swift in Sources */,
 				1830F4E329F7C1840013C7DB /* OrderDetailsModel.swift in Sources */,
 				18401E2A29DE895D007A6DED /* SignInView.swift in Sources */,
 				18401EB429E57F12007A6DED /* BookDestinationView.swift in Sources */,
@@ -384,13 +405,16 @@
 				18401EB729E581EC007A6DED /* ThirdView.swift in Sources */,
 				18AC037F29ED3AFA00F4144C /* AddNewAddressView.swift in Sources */,
 				18401EE629E93EA3007A6DED /* JuiceModel.swift in Sources */,
+				1830F5832A026EB30013C7DB /* StripeView.swift in Sources */,
 				18401E3829DEB414007A6DED /* AppCredentialsViewModel.swift in Sources */,
 				18401F0329EB1D0C007A6DED /* CartViewModel.swift in Sources */,
 				1830F4F429F909C40013C7DB /* BuyViewModel.swift in Sources */,
 				18401E4029E19440007A6DED /* CartView.swift in Sources */,
+				18539BA92A03C96100708806 /* CommonViewModel.swift in Sources */,
 				18401E4C29E250AC007A6DED /* SelectPaymentMethodView.swift in Sources */,
 				18401E9929E53A46007A6DED /* Test.swift in Sources */,
 				1830F4EE29F8E8990013C7DB /* Home.swift in Sources */,
+				18539BAC2A03C9D800708806 /* UserCredentials.xcdatamodeld in Sources */,
 				18401EAE29E56DF4007A6DED /* DetailView.swift in Sources */,
 				18401E3429DEB2CE007A6DED /* SignInViewModel.swift in Sources */,
 				1830F56C2A0240650013C7DB /* RazorpayView.swift in Sources */,
@@ -614,6 +638,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		1830F57F2A026CB00013C7DB /* XCRemoteSwiftPackageReference "stripe-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stripe/stripe-ios.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		18401E9D29E549C5007A6DED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -635,6 +667,11 @@
 			package = 1830F47029F59E1A0013C7DB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
 		};
+		1830F5802A026CB00013C7DB /* Stripe */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1830F57F2A026CB00013C7DB /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = Stripe;
+		};
 		18401E9E29E549C5007A6DED /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 18401E9D29E549C5007A6DED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -651,6 +688,19 @@
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		18539BAA2A03C9D800708806 /* UserCredentials.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				18539BAB2A03C9D800708806 /* UserCredentials.xcdatamodel */,
+			);
+			currentVersion = 18539BAB2A03C9D800708806 /* UserCredentials.xcdatamodel */;
+			path = UserCredentials.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 18401E0F29DE8411007A6DED /* Project object */;
 }
